@@ -1,7 +1,5 @@
 #! /bin/bash
 
-# Check for SECURE_API_TOKEN, else terminate with error code 1
-
 REGION="us1"
 
 while test $# -gt 0; do
@@ -26,7 +24,7 @@ while test $# -gt 0; do
        shift
        ;;
     *)
-      echo "Invalid option" # . Check help (-h | --help) for additional information. Exiting ..."
+      echo "Invalid option"
       exit 13
       ;;
   esac
@@ -81,7 +79,6 @@ function checkAccount(){
         REPORT_LINE="${ACCOUNT};"
         REPORT_LINE=${REPORT_LINE}$(curl -s --header "Authorization: Bearer $SECURE_API_TOKEN" -H 'Content-Type: application/json' "${SYSDIG_API_ENDPOINT}/api/cspm/v1/tasks/$TASK_ID" | jq -r '.data.id + ";" + .data.status + ";" + .data.startDate + ";" + .data.endDate + ";" + .data.logs[].details + ";"')
         echo "ERROR LOG: $(echo $REPORT_LINE | cut -d ';' -f6)"
-        # TASK=$(curl -s --header "Authorization: Bearer $SECURE_API_TOKEN" -H 'Content-Type: application/json' "${SYSDIG_API_ENDPOINT}/api/cspm/v1/tasks/$TASK_ID")
         echo "Checking Role ..."
         REPORT_LINE=${REPORT_LINE}$(curl -s --header "Authorization: Bearer $SECURE_API_TOKEN" -H 'Content-Type: application/json' "${SYSDIG_API_ENDPOINT}/api/cloud/v2/accounts/$ACCOUNT/validateRole")
         echo $REPORT_LINE | cut -d ';' -f7
