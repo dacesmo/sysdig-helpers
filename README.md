@@ -29,13 +29,13 @@ This script can be used to determine the health of your accounts onboarded to Sy
   ```
 - (Optional) export your token (you can also pass it at execution time)
   ```bash
-  export SYSDIG_API_TOKEN="*****-*****-******-*****"
+  export SECURE_API_TOKEN="*****-*****-******-*****"
   ```
 - Execute the script
   ```bash
   ./cspm-health-check-runbook.sh -a <single-cloud-account>
   ## You can also pass the token as a variable
-  SYSDIG_API_TOKEN="*****-*****-******-*****" ./cspm-health-check-runbook.sh -a <single-cloud-account>
+  SECURE_API_TOKEN="*****-*****-******-*****" ./cspm-health-check-runbook.sh -a <single-cloud-account>
   ## Or use a parameter to define the token
   ./cspm-health-check-runbook.sh -a <single-cloud-account> -t "*****-*****-******-*****"
   ```
@@ -44,7 +44,7 @@ This script can be used to determine the health of your accounts onboarded to Sy
   -a <single-cloud-account> return status of a single account
   -A return status of ALL the accounts in Sysdig
   -l <account,account...> return the status of a list of accounts (comma separated)
-  -t <secure-api-token> Set the SYSDIG_API_TOKEN required variable
+  -t <secure-api-token> Set the SECURE_API_TOKEN required variable
   -r <region> Your Sysdig Secure Region (us1, us2, us4, eu1, au1), default: eu1
   -o <outputfile> output file name, defaults: accounts_results.<data>.csv
   -i insecure connection, won't check certificates (behin proxy, etc), default: false USE AT YOUR OWN RISK
